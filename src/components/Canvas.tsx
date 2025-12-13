@@ -45,10 +45,10 @@ const ProjectTile = ({
       <div
         className={`relative overflow-hidden rounded-md shadow-lg transition-shadow duration-300 group-hover:shadow-2xl bg-neutral-200
         ${project.size === "sm"
-            ? "w-20 h-20 md:w-24 md:h-24"
+            ? "w-14 h-14 md:w-24 md:h-24"
             : project.size === "md"
-              ? "w-32 h-32 md:w-40 md:h-40"
-              : "w-48 h-48 md:w-56 md:h-56"
+              ? "w-24 h-24 md:w-40 md:h-40"
+              : "w-36 h-36 md:w-56 md:h-56"
           }`}
       >
         <img

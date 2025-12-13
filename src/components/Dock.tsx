@@ -60,7 +60,7 @@ const AdobeIcon = ({ letter, color }: { letter: string, color: string }) => (
 
 export const Dock = () => {
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 origin-bottom scale-75 md:scale-100">
+    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 origin-bottom scale-60 md:scale-100">
       <div className="flex items-end gap-3 px-4 py-3 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
         {/* Adobe Ae */}
         <DockIcon label="After Effects" color="bg-[#00051D]">
