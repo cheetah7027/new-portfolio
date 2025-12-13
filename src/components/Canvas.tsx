@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion } from "motion/react";
 import { X } from "lucide-react";
-import backgroundPortrait from 'figma:asset/6d6338eec9168a6eee55a841675b2390a7631f66.png';
+import backgroundPortrait from '../assets/cheetahh.webp';
 
 // Types
 export interface Project {
@@ -44,13 +44,12 @@ const ProjectTile = ({
     >
       <div
         className={`relative overflow-hidden rounded-md shadow-lg transition-shadow duration-300 group-hover:shadow-2xl bg-neutral-200
-        ${
-          project.size === "sm"
+        ${project.size === "sm"
             ? "w-20 h-20 md:w-24 md:h-24"
             : project.size === "md"
-            ? "w-32 h-32 md:w-40 md:h-40"
-            : "w-48 h-48 md:w-56 md:h-56"
-        }`}
+              ? "w-32 h-32 md:w-40 md:h-40"
+              : "w-48 h-48 md:w-56 md:h-56"
+          }`}
       >
         <img
           src={project.image}
@@ -84,43 +83,41 @@ export const Canvas = ({ projects, onOpenProject }: CanvasProps) => {
       {/* SVG Filter Definition for Prism/Chromatic Aberration */}
       <svg width="0" height="0" className="absolute pointer-events-none">
         <filter id="prism-blur">
-            {/* 1. Blur the source slightly (3.5px as requested) */}
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur" />
-            
-            {/* 2. Split Channels */}
-            {/* Red Channel */}
-            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red" />
-            {/* Green Channel */}
-            <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="green" />
-            {/* Blue Channel */}
-            <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blue" />
-            
-            {/* 3. Offset Channels to create prism effect */}
-            <feOffset in="red" dx="4" dy="0" result="red_offset" />
-            <feOffset in="blue" dx="-4" dy="0" result="blue_offset" />
-            
-            {/* 4. Blend them back together using Screen mode */}
-            <feBlend mode="screen" in="red_offset" in2="green" result="blend1" />
-            <feBlend mode="screen" in="blend1" in2="blue_offset" result="out" />
+          {/* 1. Blur the source slightly (3.5px as requested) */}
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur" />
+
+          {/* 2. Split Channels */}
+          {/* Red Channel */}
+          <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="red" />
+          {/* Green Channel */}
+          <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="green" />
+          {/* Blue Channel */}
+          <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="blue" />
+
+          {/* 3. Offset Channels to create prism effect */}
+          <feOffset in="red" dx="4" dy="0" result="red_offset" />
+          <feOffset in="blue" dx="-4" dy="0" result="blue_offset" />
+
+          {/* 4. Blend them back together using Screen mode */}
+          <feBlend mode="screen" in="red_offset" in2="green" result="blend1" />
+          <feBlend mode="screen" in="blend1" in2="blue_offset" result="out" />
         </filter>
       </svg>
 
       {/* Blurred Portrait Background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-        <div className="relative w-[75vh] h-[95vh] opacity-90">
-             {/* We use a specific style to match the reference: blurred edges, recognizable silhouette */}
-             <img 
-                src={backgroundPortrait}
-                alt="Portrait"
-                className="w-full h-full object-cover mask-image-gradient"
-                style={{ 
-                    // Apply the custom SVG filter
-                    filter: "url(#prism-blur) contrast(1.1) brightness(0.9) saturate(0.7)",
-                    // Maintain the mask
-                    maskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)",
-                    WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)"
-                }}
-             />
+        <div className="relative w-[75vh] h-[95vh] opacity-50">
+          {/* We use a specific style to match the reference: blurred edges, recognizable silhouette */}
+          <img
+            src={backgroundPortrait}
+            alt="Portrait"
+            className="w-full h-full object-cover"
+            style={{
+              // Apply the custom SVG filter
+              filter: "contrast(1) brightness(0.9) saturate(0.6) blur(0.1px)",
+            }}
+          />
+
         </div>
       </div>
 
@@ -176,19 +173,19 @@ export const ProjectModal = ({
         >
           <X className="w-5 h-5 text-black" />
         </button>
-        
+
         <div className="flex-1 bg-neutral-100 flex items-center justify-center p-8">
-            <img src={project.image} className="max-w-full max-h-full shadow-lg rounded" alt={project.label} />
+          <img src={project.image} className="max-w-full max-h-full shadow-lg rounded" alt={project.label} />
         </div>
         <div className="w-full md:w-80 bg-white p-8 border-l border-neutral-100 flex flex-col">
-            <h2 className="text-2xl font-bold mb-2">{project.label}</h2>
-            <div className="h-1 w-12 bg-black/10 mb-6" />
-            <p className="text-neutral-500 text-sm leading-relaxed mb-4">
-                This is a placeholder description for the project. In a real portfolio, this would contain details about the role, the client, and the outcome of the work.
-            </p>
-            <div className="mt-auto">
-                <span className="text-xs font-mono text-neutral-400">2024 / VISUAL DESIGN</span>
-            </div>
+          <h2 className="text-2xl font-bold mb-2">{project.label}</h2>
+          <div className="h-1 w-12 bg-black/10 mb-6" />
+          <p className="text-neutral-500 text-sm leading-relaxed mb-4">
+            This is a placeholder description for the project. In a real portfolio, this would contain details about the role, the client, and the outcome of the work.
+          </p>
+          <div className="mt-auto">
+            <span className="text-xs font-mono text-neutral-400">2024 / VISUAL DESIGN</span>
+          </div>
         </div>
       </motion.div>
     </div>
