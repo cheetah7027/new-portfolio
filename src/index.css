@@ -1637,3 +1637,13 @@ body {
     opacity: .5;
   }
 }
+
+:root {
+  --canvas-spread: 1;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --canvas-spread: 0.4;
+  }
+}

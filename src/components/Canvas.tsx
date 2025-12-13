@@ -27,7 +27,7 @@ const ProjectTile = ({
       dragMomentum={false}
       className="absolute flex flex-col items-center gap-2 cursor-grab active:cursor-grabbing group"
       style={{
-        left: `calc(50% + ${project.x}%)`,
+        left: `calc(50% + (${project.x} * var(--canvas-spread)) * 1%)`,
         top: `calc(50% + ${project.y}%)`,
       }}
       initial={{ scale: 0, opacity: 0 }}
@@ -106,7 +106,7 @@ export const Canvas = ({ projects, onOpenProject }: CanvasProps) => {
 
       {/* Blurred Portrait Background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-        <div className="relative w-[75vh] h-[95vh] opacity-50">
+        <div className="relative w-[90vw] md:w-[75vh] h-[60vh] md:h-[95vh] opacity-50">
           {/* We use a specific style to match the reference: blurred edges, recognizable silhouette */}
           <img
             src={backgroundPortrait}
