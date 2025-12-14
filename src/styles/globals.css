@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@layer utilities {
+    .mask-image-gradient {
+        mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+        -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+    }
+}
+
+body {
+    background-color: #F4F4F2;
+    overflow: hidden; /* Prevent native scroll, we use custom drag */
+}
