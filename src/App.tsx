@@ -50,6 +50,9 @@ export default function App() {
 
   return (
     <main className="w-screen h-screen overflow-hidden font-sans bg-[#F4F4F2] text-black">
+      <div className="fixed top-0 left-0 z-[9999] bg-black text-white px-2 py-1 font-bold text-xs pointer-events-none">
+        v1.0.1 - RELEASED
+      </div>
       {/* Canvas Layer */}
       <Canvas projects={PROJECTS} onOpenProject={setSelectedProject} />
 
